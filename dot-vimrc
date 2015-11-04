@@ -1,0 +1,233 @@
+" My .vimrc
+
+" Automatic reloading of .vimrc
+autocmd! bufwritepost .vimrc source %
+
+" Copy and paste
+" When pasting large blocks use F2 before pasting.
+set pastetoggle=<F2>
+set clipboard=unnamed
+
+" Backspace
+set bs=2
+
+" Rebind <Leader> key
+let mapleader = ","
+
+" Bind nohl
+" Removes highlight of the last search
+noremap <C-n> :nohl<CR>
+vnoremap <C-n> :nohl<CR>
+inoremap <C-n> :nohl<CR>
+
+" Quicksave command
+noremap <C-Z> :update<CR>
+vnoremap <C-Z> <C-C>:update<CR>
+inoremap <C-Z> <C-O>:update<CR>
+
+" Quick quit command
+noremap <Leader>e :quit<CR> " Quit current window
+noremap <Leader>E :qa!<CR> " Quit all windows
+
+" bind CTRL+mv keys to move around
+map <c-j> <c-w>j
+map <c-k> <c-w>k
+map <c-l> <c-w>l
+map <c-h> <c-w>h
+
+" Easier movement between tabs
+map <Leader>n <esc>:tabprevious<CR>
+map <Leader>m <esc>:tabnext<CR>
+
+" map sort function to a key
+vnoremap <Leader>s :sort<CR>
+
+" Easier moving of code blocks
+" Go in visual mode <v>, select multiple lines of code and press >> several times.
+vnoremap < <gv " better indentation
+vnoremap > >gv " better indentation
+
+" Show whitespaces
+autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+au InsertLeave * match ExtraWhitespace /\s\+$/
+set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
+set list
+
+" Color scheme
+" mkdir -p ~/.vim/colors && cd ~/.vim/colors
+" wget -O wombat256mod.vim http://www.vim.org/scripts/download_script.php?src_id=13400
+"" set t_Co=256
+"" color wombat256mod
+
+" Enable syntax highlighting
+filetype off
+" filetype plugin indent on
+syntax on
+
+" Showing line numbers and length
+set number
+set tw=79 " width of document
+set nowrap " no automatic wrap
+set fo-=t " no automatic wrap
+set colorcolumn=80
+highlight ColorColumn ctermbg=233
+
+" Easier formatting of paragraphs
+vmap Q gq
+nmap Q gqap
+
+" Useful settings
+set history=700
+set undolevels=700
+
+" Set tabs
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set shiftround
+set expandtab
+
+" Make search case insensitive
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+
+" Disable backup and swap files
+set nobackup
+set nowritebackup
+set noswapfile
+
+" Setup vundle
+" install vundle:
+" git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+"
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'VundleVim/Vundle.vim'
+
+" Here's all of the installed plugins
+
+" vim-powerline
+Plugin 'Lokaltog/vim-powerline'
+set laststatus=2
+
+" ctrlp
+Plugin 'kien/ctrlp.vim'
+let g:ctrlp_max_height = 30
+set wildignore+=*.pyc
+set wildignore+=*_build/*
+set wildignore+=*/coverage/*
+
+" jedi-vim
+Plugin 'davidhalter/jedi-vim'
+let g:jedi#usages_command = "<leader>z"
+let g:jedi#popup_on_dot = 0
+let g:jedi#popup_select_first = 0
+map <Leader>b Oimport ipdb; ipdb.set_trace() # Breakpoint <C-c>
+
+" Better navigation through omnicomplete option list
+" http://stackoverflow.com/questions/2170023/how-to-map-keys-for-popup-menu-in-vim
+set completeopt=longest,menuone
+function! OmniPopup(action)
+if pumvisible()
+    if a:action == 'j'
+        return "\<C-N>"
+    elseif a:action == 'k'
+        return "\<C-P>"
+    endif
+endif
+return a:action
+endfunction
+
+inoremap <silent><C-j> <C-R>=OmniPopup('j')<CR>
+inoremap <silent><C-k> <C-R>=OmniPopup('k')<CR>
+
+" Code folding
+Plugin 'vim-scripts/Efficient-python-folding'
+set nofoldenable
+
+" nerdtree
+Plugin 'scrooloose/nerdtree'
+"autocmd vimenter * NERDTree
+autocmd StdinReadPre * let s:std_in = 1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+map <C-n> :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+" NERDTress File highlighting
+function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
+exec 'autocmd FileType nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
+exec 'autocmd FileType nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
+endfunction
+
+au VimEnter * call NERDTreeHighlightFile('jade', 'green', 'none', 'green', '#151515')
+au VimEnter * call NERDTreeHighlightFile('ini', 'yellow', 'none', 'yellow', '#151515')
+au VimEnter * call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#151515')
+au VimEnter * call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
+au VimEnter * call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#151515')
+au VimEnter * call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#151515')
+au VimEnter * call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#151515')
+au VimEnter * call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
+au VimEnter * call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
+au VimEnter * call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
+au VimEnter * call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
+au VimEnter * call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
+au VimEnter * call NERDTreeHighlightFile('rb', 'Red', 'none', '#ffa500', '#151515')
+au VimEnter * call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
+
+" Add arrows to nerdtree
+let g:NERDTreeDirArrows = 1
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+
+" Robotframework highlighting
+" add syntax highlighting using
+" # -*- coding: robot -*- or :setf robot
+Plugin 'mfukar/robotframework-vim'
+
+" vim-virtualenv
+" :VirtualEnvDeactivate, :VirtualEnvList, :VirtualEnvActivate test
+Plugin 'jmcantrell/vim-virtualenv'
+
+" tagbar
+Plugin 'majutsushi/tagbar'
+map <Leader>t <esc>:TagbarOpen fjc<CR>
+let g:tagbar_left = 1
+
+" vim-ruby
+Plugin 'vim-ruby/vim-ruby'
+
+" elzr/vim-json
+Plugin 'elzr/vim-json'
+
+" moll/vim-node
+Plugin 'moll/vim-node'
+
+" tpope/vim-fugitive
+Plugin 'tpope/vim-fugitive'
+
+" Themes
+Plugin 'fatih/molokai'
+
+" ludovicchabant/vim-lawrencium
+Plugin 'ludovicchabant/vim-lawrencium'
+
+" ultisnips
+"Plugin 'SirVer/ultisnips'
+"Plugin 'honza/vim-snippets'
+"let g:UltiSnipsExpandTrigger="<c-e>"
+"let g:UltiSnipsExpandTrigger = '<C-j>'
+"let g:UltiSnipsJumpForwardTrigger="<c-b>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+" let g:UltiSnipsEditSplit = 'vertical'
+
+" vim-buffergator
+"Plugin 'jeetsukumaran/vim-buffergator'
+
+
+" End of installed plugins
+call vundle#end()
+
+colorscheme molokai
+filetype plugin indent on
