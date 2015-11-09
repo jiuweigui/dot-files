@@ -3,6 +3,9 @@
 " Automatic reloading of .vimrc
 autocmd! bufwritepost .vimrc source %
 
+" Configure .md files as markdown
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+
 " Copy and paste
 " When pasting large blocks use F2 before pasting.
 set pastetoggle=<F2>
