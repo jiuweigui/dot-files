@@ -98,6 +98,19 @@ set nobackup
 set nowritebackup
 set noswapfile
 
+" Banish F1 help from this plane of existance
+noremap <F1> <Esc>
+
+" I will never unlearn this except when done the hard way
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+
 " Setup vundle
 " install vundle:
 " git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
