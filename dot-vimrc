@@ -3,6 +3,10 @@
 " Automatic reloading of .vimrc
 autocmd! bufwritepost .vimrc source %
 
+
+" Set encoding to utf-8
+set encoding=utf-8
+
 " Copy and paste
 " When pasting large blocks use F2 before pasting.
 set pastetoggle=<F2>
@@ -111,6 +115,15 @@ inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
 
+
+" doing the splits
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+set splitbelow
+set splitright
+
 " Setup vundle
 " install vundle:
 " git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
@@ -122,23 +135,31 @@ Plugin 'VundleVim/Vundle.vim'
 
 " Here's all of the installed plugins
 
-" vim-powerline
-Plugin 'Lokaltog/vim-powerline'
-set laststatus=2
+" powerline/powerline
+Plugin 'powerline/powerline'
 
-" ctrlp
-Plugin 'kien/ctrlp.vim'
+
+" ctrlpvim/ctrlp
+Plugin 'ctrlpvim/ctrlp.vim'
 let g:ctrlp_max_height = 30
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg)$'
+let g:ctrlp_user_command = 'find %s -type f'
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 set wildignore+=*.pyc
-set wildignore+=*_build/*
-set wildignore+=*/coverage/*
+
 
 " jedi-vim
 Plugin 'davidhalter/jedi-vim'
 let g:jedi#usages_command = "<leader>z"
 let g:jedi#popup_on_dot = 0
 let g:jedi#popup_select_first = 0
+let g:jedi#use_splits_not_buffers = "left"
 map <Leader>b Oimport ipdb; ipdb.set_trace() # Breakpoint <C-c>
+
 
 " Better navigation through omnicomplete option list
 " http://stackoverflow.com/questions/2170023/how-to-map-keys-for-popup-menu-in-vim
@@ -194,43 +215,44 @@ let g:NERDTreeDirArrows = 1
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 
-" Robotframework highlighting
-" add syntax highlighting using
-" # -*- coding: robot -*- or :setf robot
-Plugin 'mfukar/robotframework-vim'
 
 " vim-virtualenv
 " :VirtualEnvDeactivate, :VirtualEnvList, :VirtualEnvActivate test
 Plugin 'jmcantrell/vim-virtualenv'
 
+
 " tagbar
 Plugin 'majutsushi/tagbar'
-map <Leader>t <esc>:TagbarOpen fjc<CR>
+map <Leader>t <esc>:TagbarToggle<CR>
 let g:tagbar_left = 1
+
 
 " vim-ruby
 Plugin 'vim-ruby/vim-ruby'
 
+
 " elzr/vim-json
 Plugin 'elzr/vim-json'
 
-" moll/vim-node
-Plugin 'moll/vim-node'
 
 " scrooloose/syntastic
 Plugin 'scrooloose/syntastic'
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
-" pangloss/vim-javascript
-Plugin 'pangloss/vim-javascript'
 
 " tpope/vim-fugitive
 Plugin 'tpope/vim-fugitive'
 
+
 " Themes
 Plugin 'fatih/molokai'
 
-" ludovicchabant/vim-lawrencium
-Plugin 'ludovicchabant/vim-lawrencium'
 
 " fatih/vim-go
 Plugin 'fatih/vim-go'
@@ -249,18 +271,45 @@ let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 
 
-" ultisnips
-"Plugin 'SirVer/ultisnips'
-"Plugin 'honza/vim-snippets'
-"let g:UltiSnipsExpandTrigger="<c-e>"
-"let g:UltiSnipsExpandTrigger = '<C-j>'
-"let g:UltiSnipsJumpForwardTrigger="<c-b>"
-" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-" let g:UltiSnipsEditSplit = 'vertical'
+" plasticboy/vim-markdown
+" depends on tabular
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
-" vim-buffergator
-"Plugin 'jeetsukumaran/vim-buffergator'
 
+" nathanaelkane/vim-indent-guides
+Plugin 'nathanaelkane/vim-indent-guides'
+
+
+" raimondi/delimitmate
+Plugin 'raimondi/delimitmate'
+
+
+" tpope/vim-commentary
+Plugin 'tpope/vim-commentary'
+
+
+" pearofducs/ansible-vim
+Plugin 'pearofducks/ansible-vim'
+
+
+" mbbill/undotree
+Plugin 'mbbill/undotree'
+nnoremap <F5> :UndotreeToggle<CR>
+
+
+" vim-pandoc/vim-pandoc
+Plugin 'vim-pandoc/vim-pandoc'
+Plugin 'vim-pandoc/vim-pandoc-syntax'
+
+
+" mtth/scratch.vim
+Plugin 'mtth/scratch.vim'
+
+
+" janko-m/vim-test
+Plugin 'janko-m/vim-test'
 
 " End of installed plugins
 call vundle#end()
