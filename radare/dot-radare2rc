@@ -1,0 +1,58 @@
+# Configurations for Radare2
+
+# -------------------
+# ASM
+# -------------------
+e asm.syntax = intel    # set syntax
+e asm.cmtright = true   # show comments right of disasm
+e asm.flags = true      # show flags
+e asm.pseudo = true     # show pseudocode in disasm
+e asm.linesout = true   # lines
+e asm.offset = true     # show offsets
+e asm.size = true       # show opcode sizes
+e asm.varsub = true     # substitute variables
+e asm.xrefs = true      # show xrefs in disasm
+e asm.functions = true  # show functions in disasm
+e asm.bytespace = true  # separate hex with whitespace
+
+# Display stack and register values on top of disassembly view
+e cmd.stack = true
+
+# Solarized theme
+eco solarized
+
+# Use UTF-8
+e scr.utf8 = true
+
+# Add editor
+e cfg.editor = vim
+
+# anal.hasnext
+e anal.hasnext = false
+
+# Disable fortunes
+e cfg.fortunes = false
+
+# xvilka theme
+ec fname rgb:0cf
+ec label rgb:0f3
+ec math rgb:660
+ec bin rgb:f90
+ec call rgb:f00
+ec jmp rgb:03f
+ec cjmp rgb:33c
+ec offset rgb:366
+ec comment rgb:0cf
+ec push rgb:0c0
+ec pop rgb:0c0
+ec cmp rgb:060
+ec nop rgb:000
+ec b0x00 rgb:444
+ec b0x7f rgb:555
+ec b0xff rgb:666
+ec btext rgb:777
+ec other rgb:bbb
+ec num rgb:f03
+ec reg rgb:6f0
+ec fline rgb:fc0
+ec flow rgb:0f0

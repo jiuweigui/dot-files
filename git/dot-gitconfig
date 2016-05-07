@@ -1,0 +1,14 @@
+[core]
+    excludesfile = $HOME/.gitignore_global
+
+[user]
+    name = jiuweigui
+    email = jiuweigui@countermail.com
+    signingkey = 15C034C2
+
+[commit]
+    gpgsign = true
+
+[http]
+    sslVerify = true
+    sslVersion = tlsv1.2

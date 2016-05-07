@@ -280,6 +280,7 @@ autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
 " nathanaelkane/vim-indent-guides
 Plugin 'nathanaelkane/vim-indent-guides'
+let g:indent_guides_start_level = 2
 
 
 " raimondi/delimitmate
