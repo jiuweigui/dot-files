@@ -41,7 +41,6 @@ vim-editor:
 		$(LINK) $(PWD)/vim/dot-vimrc $(HOME)/.vimrc
 
 zsh-shell:
-		chsh -s /bin/zsh
 		mkdir -p $(HOME)/.oh-my-zsh/lib/
 		$(LINK) $(PWD)/zsh/dot-zshrc $(HOME)/.zshrc
 		$(LINK) $(PWD)/zsh/alias.zsh $(HOME)/.oh-my-zsh/lib/alias.zsh
