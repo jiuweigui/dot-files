@@ -5,7 +5,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell"
+ZSH_THEME="gentoo"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -27,7 +27,7 @@ export UPDATE_ZSH_DAYS=14
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="false"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # COMPLETION_WAITING_DOTS="true"
@@ -49,7 +49,7 @@ export UPDATE_ZSH_DAYS=14
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(tmux git ruby vundle osx brew npm node gpg-agent virtualenvwrapper virtualenv vault encode64 golang go history jsontools jump pass rvm taskwarrior)
+plugins=(tmux git ruby vundle npm node gpg-agent vault encode64 golang go history jsontools jump pass rvm taskwarrior)
 
 # User configuration
 
