@@ -198,6 +198,13 @@ let g:indent_guides_guide_size = 1
 hi IndentGuidesOdd guibg=red ctermbg=3
 hi IndentGuidesEven guibg=green ctermbg=4
 
+" Themes
+Plug 'morhetz/gruvbox'
+
 call plug#end()
+
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+colorscheme gruvbox
+set background=dark
 
 filetype plugin indent on
