@@ -142,6 +142,15 @@ Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/sy
 " vim-go-extra
 Plug 'vim-jp/vim-go-extra'
 
+" Rustlang
+Plug 'rust-lang/rust.vim'
+let g:rustfmt_autosave = 1
+let g:rustfmt_fail_silently = 1
+
+" tasklist.vim
+Plug 'vim-scripts/TaskList.vim'
+
+
 " Version control
 " Git
 Plug 'tpope/vim-fugitive'
@@ -186,6 +195,9 @@ Plug 'elzr/vim-json'
 
 " Filetype:ruby
 Plug 'vim-ruby/vim-ruby'
+
+" Filetype:ansible
+Plug 'pearofducks/ansible-vim'
 
 " UI treats
 Plug 'fugalh/desert.vim'
