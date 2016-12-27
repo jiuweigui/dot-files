@@ -47,5 +47,3 @@ zsh-shell:
 
 help:
 		echo "[+] Check out the file to see available commands"
-		echo "..."
-		echo "..."
