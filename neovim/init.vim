@@ -3,12 +3,12 @@
 " Configure automatic reload for init.vim
 autocmd! BufWritePost ~/.config/nvim/init.vim source %
 
-" Configure <Leader>
+" Configure <Leader> key
 let mapleader = ","
 
 " Configure cut and paste
-set pastetoggle=<F10>
-set clipboard=unnamed
+" set pastetoggle=<F10>
+" set clipboard=unnamed
 
 " Configure search highlights
 noremap <C-n> :nohl<CR>
@@ -31,8 +31,8 @@ map <c-l> <c-w>l
 map <c-h> <c-w>h
 
 " Configure movement between tabs
-map <Leader>n <ESC>:tabprevious<CR>
-map <Leader>m <ESC>:tabnext<CR>
+map <F4> <ESC>:tabprevious<CR>
+map <F5> <ESC>:tabnext<CR>
 
 " Configure sort function
 vnoremap <Leader>s :sort<CR>
@@ -43,15 +43,14 @@ au InsertLeave * match ExtraWhitespace /\s\+$/
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 set list
 
-" Configure line numbers and lengths
-"syntax on
+" Configure line number and lengths
 set bs=2
 set number
 set tw=79
 set nowrap
 set fo-=t
 set colorcolumn=80
-highlight ColorColumn ctermbg=233
+highlight ColorColumn ctermbg=233 guibg=#2c2d27
 
 " Configure history and undo
 set history=700
@@ -69,7 +68,7 @@ set nobackup
 set nowritebackup
 set noswapfile
 
-" Remove moving with arrows
+" Remove moving with arrow keys
 nnoremap <up> <nop>
 nnoremap <down> <nop>
 nnoremap <left> <nop>
@@ -87,38 +86,83 @@ nnoremap <C-H> <C-W><C-H>
 set splitbelow
 set splitright
 
-" Setup colorschemes
-colorscheme desert
+" Setup colorscheme
+" colorscheme desert
 
-" Call plugin manager vim-plug
+
+" PLUGIN MANAGER
 call plug#begin('~/.config/nvim/plugged')
 
-" Generic:plugin manager
+
+" Generic plugins
+
+" plugin manager
 Plug 'junegunn/vim-plug'
 
-" Generic:fuzzy file finder
+" fuzzy file finder
 Plug 'ctrlpvim/ctrlp.vim'
-let g:ctrlp_max_height = 30
+let g:ctrlp_max_height = 15
 let g:ctrlp_map = '<F3>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg)$'
 let g:ctrlp_user_command = 'find %s -type f'
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.gz,*.tar,*.bz2,*.pyc
 
-
-" Generic:directory manager
+" directory manager
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-" TODO: add nerdtree options here
+map <F1> :NERDTreeToggle<CR>
 
-" Generic:code tags
+" code tags
 Plug 'majutsushi/tagbar'
-map <F2> <ESC>:TagbarToggle<CR>
+nmap <F2> <ESC>:TagbarToggle<CR>
 let g:tagbar_left = 1
 
+" undo history
+Plug 'mbbill/undotree'
+nnoremap <F1> :UndotreeToggle<CR>
 
-" Setup plugins for Go development
-Plug 'fatih/vim-go', { 'for': 'go' }
+" commenting in and out
+Plug 'tpope/vim-commentary' " :7,17Commentary, gc
+
+" scratchpad
+Plug 'mtth/scratch.vim'
+nnoremap <F10> :Scratch<CR>
+
+" autoclose quotes etc.
+Plug 'Raimondi/delimitMate'
+
+" statusbar
+Plug 'vim-airline/vim-airline'
+
+" tabularize
+Plug 'godlygeek/tabular' ":Tab /:
+
+" tasklist
+Plug 'vim-scripts/TaskList.vim'
+map <Leader>v <Plug>TaskList
+
+" syntax checking
+Plug 'scrooloose/syntastic'
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntasti_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" VCS - GIT
+Plug 'tpope/vim-fugitive'
+
+
+" Language specific plugins
+
+
+" Golang
+
+" vim-go
+Plug 'fatih/vim-go', {'for': 'go'}
 autocmd BufRead,BufNewFile Filetype *.go set filetype=go
 au Filetype go nmap <Leader>r <Plug>(go-run)
 au Filetype go nmap <Leader>b <Plug>(go-build)
@@ -127,7 +171,10 @@ au Filetype go nmap <Leader>c <Plug>(go-coverage)
 au Filetype go nmap <Leader>l <Plug>(go-metalinter)
 au Filetype go nmap <Leader>s <Plug>(go-implements)
 au Filetype go nmap <Leader>i <Plug>(go-info)
-au Filetype go nmap <Leader>e <Plug>(go-rename)
+au Filetype go nmap <Leader>er <Plug>(go-rename)
+au Filetype go nmap <Leader>ds <Plug>(go-def-split)
+au Filetype go nmap <Leader>dv <Plug>(go-def-vertical)
+au Filetype go nmap <Leader>dt <Plug>(go-def-tab)
 let g:go_fmt_command = "goimports"
 let g:go_fmt_fail_silently = 1
 let g:go_highlight_functions = 1
@@ -136,73 +183,27 @@ let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 
-" TODO: Setup <Leader> for ctrl x ctrl o
 Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
+" TODO: Does nothing atm
 
-" vim-go-extra
-Plug 'vim-jp/vim-go-extra'
-
-" Rustlang
+" Rust
 Plug 'rust-lang/rust.vim'
 let g:rustfmt_autosave = 1
 let g:rustfmt_fail_silently = 1
 
-" tasklist.vim
-Plug 'vim-scripts/TaskList.vim'
-
-
-" Version control
-" Git
-Plug 'tpope/vim-fugitive'
-
-" Syntax checking - generic
-Plug 'scrooloose/syntastic'
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-" mbbill/undotree - Undo history
-Plug 'mbbill/undotree'
-nnoremap <F1> :UndotreeToggle<CR>
-
-" tpope/vim-commentary - Commenting plugin
-Plug 'tpope/vim-commentary'
-
-" mtth/scratch - vim scratch pad :Scratch TODO: Setup <Leader> cmd for this
-Plug 'mtth/scratch.vim'
-nnoremap <F10> :Scratch<CR>
-
-" Raimondi/delimitMate - insert closing tags automatically
-Plug 'Raimondi/delimitMate'
-
-" Powerline statusbar
-Plug 'powerline/powerline'
 
 
 " Filetypes
 
-" Filetype:markdown
-Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
-autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
-" Filetype:json
+" markdown
+Plug 'plasticboy/vim-markdown'
+autocmd BufNewFile,BufReadPost *md set filetype=markdown
+
+" json
 Plug 'elzr/vim-json'
 
-" Filetype:ruby
-Plug 'vim-ruby/vim-ruby'
-
-" Filetype:ansible
-Plug 'pearofducks/ansible-vim'
-
-" UI treats
-Plug 'fugalh/desert.vim'
-
-" vim indenting visual guides
+" vim indent guides
 Plug 'nathanaelkane/vim-indent-guides'
 let g:indent_guides_start_level = 2
 let g:indent_guides_auto_colors = 0
@@ -210,13 +211,23 @@ let g:indent_guides_guide_size = 1
 hi IndentGuidesOdd guibg=red ctermbg=3
 hi IndentGuidesEven guibg=green ctermbg=4
 
+" ansible
+Plug 'pearofducks/ansible-vim'
+
+
 " Themes
+Plug 'junegunn/seoul256.vim'
 Plug 'morhetz/gruvbox'
+Plug 'whatyouhide/vim-gotham'
+Plug 'fugalh/desert.vim'
 
 call plug#end()
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-colorscheme gruvbox
+colorscheme desert
+"colorscheme seoul256
+"colorscheme gotham256
+"colorscheme gruvbox
 set background=dark
 
 filetype plugin indent on
