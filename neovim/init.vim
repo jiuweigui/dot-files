@@ -164,6 +164,11 @@ Plug 'tpope/vim-fugitive'
 " vim-go
 Plug 'fatih/vim-go', {'for': 'go'}
 autocmd BufRead,BufNewFile Filetype *.go set filetype=go
+autocmd FileType go call sacp#enableForThisBuffer({ "matches": [
+                \ { '=~': '\v[a-zA-Z]{4}$' , 'feedkeys': "\<C-x>\<C-n>"} ,
+                \ { '=~': '\.$'            , 'feedkeys': "\<C-x>\<C-o>", "ignoreCompletionMode":1} ,
+                \ ]
+                \ })
 au Filetype go nmap <Leader>r <Plug>(go-run)
 au Filetype go nmap <Leader>b <Plug>(go-build)
 au Filetype go nmap <Leader>t <Plug>(go-test)
@@ -182,6 +187,8 @@ let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
+
+Plug 'roxma/SimpleAutoComplPop'
 
 Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
 " TODO: Does nothing atm
