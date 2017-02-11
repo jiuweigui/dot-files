@@ -188,6 +188,10 @@ let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 
+Plug 'jodosha/vim-godebug'
+au Filetype go nmap <Leader>br :call GoToggleBreakpoint()<CR>
+au Filetype go nmap <Leader>db :call GoDebug()<CR>
+
 Plug 'roxma/SimpleAutoComplPop'
 
 Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
@@ -197,7 +201,6 @@ Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/sy
 Plug 'rust-lang/rust.vim'
 let g:rustfmt_autosave = 1
 let g:rustfmt_fail_silently = 1
-
 
 
 " Filetypes
@@ -221,6 +224,8 @@ hi IndentGuidesEven guibg=green ctermbg=4
 " ansible
 Plug 'pearofducks/ansible-vim'
 
+Plug 'jeetsukumaran/vim-buffergator'
+nnoremap <F9> :BuffergatorToggle<CR>
 
 " Themes
 Plug 'junegunn/seoul256.vim'
