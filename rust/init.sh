@@ -12,6 +12,7 @@ cargo install cargo-license
 cargo install cargo-tree
 cargo install cargo-graph
 cargo install cargo-outdated
+cargo install cargo-modules
 
 # Testing etc.
 cargo install cargo-fuzz
@@ -19,3 +20,4 @@ cargo install cargo-audit
 
 # Specific tools
 cargo install cargo-apk
+cargo install dinghy
