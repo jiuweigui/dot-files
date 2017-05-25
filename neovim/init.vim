@@ -4,7 +4,10 @@
 autocmd! BufWritePost ~/.config/nvim/init.vim source %
 
 " Configure <Leader> key
-let mapleader = ","
+"let mapleader = ","
+let mapleader = " "
+
+set hidden
 
 " Configure cut and paste
 " set pastetoggle=<F10>
@@ -201,7 +204,6 @@ Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/sy
 Plug 'rust-lang/rust.vim'
 let g:rustfmt_autosave = 1
 let g:rustfmt_fail_silently = 1
-
 
 " Filetypes
 
