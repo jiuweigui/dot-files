@@ -1,0 +1,52 @@
+# .bash_settings
+# 
+# You need to source this from .bashrc
+
+# ------- #
+# Aliases #
+# ------- #
+alias vim='nvim'
+alias ls='ls -G'
+
+
+# ---------------- #
+# Editors & Shells #
+# ---------------- #
+export EDITOR='nvim'
+export SHELL='bash'
+
+
+# ----- #
+# Tools #
+# ----- #
+
+# Note taking
+n() {
+    $EDITOR $HOME/.notes/"$*".md
+}
+nls() {
+    ls -c $HOME/.notes/|grep "$*"
+}
+
+# Bashmarks
+source $HOME/.local/bin/bashmarks.sh
+
+
+# ------ #
+# Golang #
+# ------ #
+export GOPATH=$HOME/code/go
+export PATH=$PATH:$GOPATH/bin
+
+
+# ------ #
+# Python #
+# ------ #
+export PYTHONDONTWRITEBYTECODE=1
+export WORKON_HOME=$HOME/.virtualenvs/
+
+
+# ---- #
+# Rust #
+# ---- #
+source $HOME/.cargo/env
