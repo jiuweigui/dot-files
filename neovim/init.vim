@@ -205,6 +205,16 @@ Plug 'rust-lang/rust.vim'
 let g:rustfmt_autosave = 1
 let g:rustfmt_fail_silently = 1
 
+" vim-racer
+Plug 'racer-rust/vim-racer'
+let g:racer_cmd = "~/.cargo/bin/racer"
+let g:racer_experimental_completer = 1
+au FileType rust nmap gd <Plug>(rust-def)
+au FileType rust nmap gs <Plug>(rust-def-split)
+au FileType rust nmap gx <Plug>(rust-def-vertical)
+au FileType rust nmap <leader>gd <Plug>(rust-doc)
+
+
 " Filetypes
 
 
@@ -226,6 +236,9 @@ hi IndentGuidesEven guibg=green ctermbg=4
 " ansible
 Plug 'pearofducks/ansible-vim'
 
+" toml support
+Plug 'cespare/vim-toml'
+
 Plug 'jeetsukumaran/vim-buffergator'
 nnoremap <F9> :BuffergatorToggle<CR>
 
@@ -234,6 +247,7 @@ Plug 'junegunn/seoul256.vim'
 Plug 'morhetz/gruvbox'
 Plug 'whatyouhide/vim-gotham'
 Plug 'fugalh/desert.vim'
+Plug 'mhinz/vim-startify'
 
 call plug#end()
 
