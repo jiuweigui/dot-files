@@ -24,3 +24,4 @@ cargo install --git https://github.com/evernym/cargo-test-xunit
 cargo install cargo-apk
 cargo install dinghy
 cargo install cargo-script
+cargo install mdbook
