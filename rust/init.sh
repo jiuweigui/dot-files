@@ -3,6 +3,7 @@
 echo "[+] Initializing the Rust plugins"
 
 # Helper tools
+cargo install cargo-update
 cargo install rustfmt
 cargo install clippy
 cargo install cargo-mod
@@ -21,3 +22,4 @@ cargo install cargo-audit
 # Specific tools
 cargo install cargo-apk
 cargo install dinghy
+cargo install cargo-script
