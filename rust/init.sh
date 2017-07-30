@@ -18,6 +18,7 @@ cargo install cargo-modules
 # Testing etc.
 cargo install cargo-fuzz
 cargo install cargo-audit
+cargo install --git https://github.com/evernym/cargo-test-xunit
 
 # Specific tools
 cargo install cargo-apk
