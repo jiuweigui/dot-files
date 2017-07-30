@@ -155,9 +155,6 @@ let g:syntastic_auto_loc_list = 1
 let g:syntasti_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-" VCS - GIT
-Plug 'tpope/vim-fugitive'
-
 
 " Language specific plugins
 
@@ -214,12 +211,37 @@ au FileType rust nmap gs <Plug>(rust-def-split)
 au FileType rust nmap gx <Plug>(rust-def-vertical)
 au FileType rust nmap <leader>gd <Plug>(rust-doc)
 
+" buffergator
+Plug 'jeetsukumaran/vim-buffergator'
+nnoremap <F9> :BuffergatorToggle<CR>
+
+" vim-bookmarks https://github.com/MattesGroeger/vim-bookmarks
+Plug 'MattesGroeger/vim-bookmarks'
+
+" easymotion
+Plug 'easymotion/vim-easymotion'
+
+
+"""""""
+" VCS "
+"""""""
+
+" mercurial support
+Plug 'jlfwong/vim-mercenary'
+
+" git support
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
 
 " Filetypes
 
 
 " markdown
 Plug 'plasticboy/vim-markdown'
+autocmd BufNewFile,BufReadPost *md set filetype=markdown
+
+" markdown toc
+Plug 'mzlogin/vim-markdown-toc'
 autocmd BufNewFile,BufReadPost *md set filetype=markdown
 
 " json
@@ -238,9 +260,6 @@ Plug 'pearofducks/ansible-vim'
 
 " toml support
 Plug 'cespare/vim-toml'
-
-Plug 'jeetsukumaran/vim-buffergator'
-nnoremap <F9> :BuffergatorToggle<CR>
 
 " Themes
 Plug 'junegunn/seoul256.vim'
