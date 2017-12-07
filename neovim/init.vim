@@ -105,7 +105,7 @@ Plug 'junegunn/vim-plug'
 " fuzzy file finder
 Plug 'ctrlpvim/ctrlp.vim'
 let g:ctrlp_max_height = 15
-let g:ctrlp_map = '<F3>'
+let g:ctrlp_map = '<F2>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg)$'
@@ -118,12 +118,12 @@ map <F1> :NERDTreeToggle<CR>
 
 " code tags
 Plug 'majutsushi/tagbar'
-nmap <F2> <ESC>:TagbarToggle<CR>
+nmap <F3> <ESC>:TagbarToggle<CR>
 let g:tagbar_left = 1
 
 " undo history
 Plug 'mbbill/undotree'
-nnoremap <F1> :UndotreeToggle<CR>
+nnoremap <F9> :UndotreeToggle<CR>
 
 " commenting in and out
 Plug 'tpope/vim-commentary' " :7,17Commentary, gc
@@ -136,7 +136,9 @@ nnoremap <F10> :Scratch<CR>
 Plug 'Raimondi/delimitMate'
 
 " statusbar
-Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline'
+Plug 'itchyny/lightline.vim'
+set noshowmode
 
 " tabularize
 Plug 'godlygeek/tabular' ":Tab /:
@@ -155,8 +157,18 @@ let g:syntastic_auto_loc_list = 1
 let g:syntasti_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+" Ripgrep search
+Plug 'jremmen/vim-ripgrep'
+
 
 " Language specific plugins
+
+" Webdev
+
+"" Emmet
+Plug 'mattn/emmet-vim'
+" webapi
+Plug 'mattn/webapi-vim'
 
 
 " Golang
@@ -235,7 +247,6 @@ Plug 'tpope/vim-fugitive'
 
 " Filetypes
 
-
 " markdown
 Plug 'plasticboy/vim-markdown'
 autocmd BufNewFile,BufReadPost *md set filetype=markdown
@@ -247,19 +258,46 @@ autocmd BufNewFile,BufReadPost *md set filetype=markdown
 " json
 Plug 'elzr/vim-json'
 
+" gherkin
+Plug 'tpope/vim-cucumber'
+
 " vim indent guides
 Plug 'nathanaelkane/vim-indent-guides'
+let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_start_level = 2
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_guide_size = 1
-hi IndentGuidesOdd guibg=red ctermbg=3
-hi IndentGuidesEven guibg=green ctermbg=4
+let g:indent_guides_color_change_percent = 3
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd guibg=red ctermbg=3
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
 
 " ansible
 Plug 'pearofducks/ansible-vim'
 
 " toml support
 Plug 'cespare/vim-toml'
+
+" Minimap
+Plug 'severin-lemaignan/vim-minimap'
+
+" VueJS and webdev
+Plug 'posva/vim-vue'
+autocmd FileType vue syntax sync fromstart
+
+" Unsorted stuff
+Plug 'cakebaker/scss-syntax.vim'
+Plug 'stephpy/vim-yaml'
+Plug 'uarun/vim-protobuf'
+Plug 'kylef/apiblueprint.vim'
+Plug 'keith/tmux.vim'
+Plug 'kurayama/systemd-vim-syntax'
+Plug 'PotatoesMaster/i3-vim-syntax'
+Plug 'chr4/nginx.vim'
+Plug 'tbastos/vim-lua'
+Plug 'pangloss/vim-javascript'
+Plug 'othree/html5.vim'
+Plug 'isobit/vim-caddyfile'
+Plug 'ekalinin/Dockerfile.vim'
 
 " Themes
 Plug 'junegunn/seoul256.vim'
