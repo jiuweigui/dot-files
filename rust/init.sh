@@ -25,3 +25,4 @@ cargo install cargo-apk
 cargo install dinghy
 cargo install cargo-script
 cargo install mdbook
+cargo install cross
