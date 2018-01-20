@@ -300,6 +300,7 @@ Plug 'isobit/vim-caddyfile'
 Plug 'ekalinin/Dockerfile.vim'
 
 " Themes
+Plug 'fatih/molokai'
 Plug 'junegunn/seoul256.vim'
 Plug 'morhetz/gruvbox'
 Plug 'whatyouhide/vim-gotham'
@@ -309,7 +310,8 @@ Plug 'mhinz/vim-startify'
 call plug#end()
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-colorscheme desert
+colorscheme molokai
+"colorscheme desert
 "colorscheme seoul256
 "colorscheme gotham256
 "colorscheme gruvbox
