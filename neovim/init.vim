@@ -4,8 +4,8 @@
 autocmd! BufWritePost ~/.config/nvim/init.vim source %
 
 " Configure <Leader> key
-"let mapleader = ","
-let mapleader = " "
+let mapleader = ","
+"let mapleader = " "
 
 set hidden
 
@@ -159,6 +159,8 @@ let g:syntastic_check_on_wq = 0
 
 " Ripgrep search
 Plug 'jremmen/vim-ripgrep'
+let g:rg_highlight = 1
+let g:rg_derive_root = 1
 
 
 " Language specific plugins
@@ -298,6 +300,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'othree/html5.vim'
 Plug 'isobit/vim-caddyfile'
 Plug 'ekalinin/Dockerfile.vim'
+Plug 'hrj/vim-DrawIt'
 
 " Themes
 Plug 'fatih/molokai'
