@@ -3,26 +3,37 @@
 echo "[+] Initializing the Rust plugins"
 
 # Helper tools
-cargo install cargo-update
-cargo install rustfmt
-cargo install clippy
-cargo install cargo-mod
-cargo install cargo-count
-cargo install cargo-edit
-cargo install cargo-license
-cargo install cargo-tree
-cargo install cargo-graph
-cargo install cargo-outdated
-cargo install cargo-modules
+HELPER_TOOLS=(
+    'cargo-update'
+    'rustfmt'
+    'clippy'
+    'cargo-mod'
+    'cargo-count'
+    'cargo-edit'
+    'cargo-license'
+    'cargo-tree'
+    'cargo-graph'
+    'cargo-outdated'
+    'cargo-modules'
+)
 
 # Testing etc.
-cargo install cargo-fuzz
-cargo install cargo-audit
-cargo install --git https://github.com/evernym/cargo-test-xunit
+TESTING_TOOLS=(
+    'cargo-fuzz'
+    'cargo-audit'
+    '--git https://github.com/evernym/cargo-test-xunit'
+)
 
 # Specific tools
-cargo install cargo-apk
-cargo install dinghy
-cargo install cargo-script
-cargo install mdbook
-cargo install cross
+SPECIFIC_TOOLS=(
+    'cargo-apk'
+    'dinghy'
+    'cargo-script'
+    'mdbook'
+    'cross'
+)
+
+for tool in ${HELPER_TOOLS[@]} ${TESTING_TOOLS[@]} ${SPECIFIC_TOOLS[@]}; do
+    echo "[+] Installing/Updating $tool"
+    cargo install $tool
+done
