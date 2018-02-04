@@ -186,7 +186,7 @@ autocmd FileType go call sacp#enableForThisBuffer({ "matches": [
 au Filetype go nmap <Leader>r <Plug>(go-run)
 au Filetype go nmap <Leader>b <Plug>(go-build)
 au Filetype go nmap <Leader>t <Plug>(go-test)
-au Filetype go nmap <Leader>c <Plug>(go-coverage)
+au Filetype go nmap <Leader>c <Plug>(go-coverage-toggle)
 au Filetype go nmap <Leader>l <Plug>(go-metalinter)
 au Filetype go nmap <Leader>s <Plug>(go-implements)
 au Filetype go nmap <Leader>i <Plug>(go-info)
@@ -194,6 +194,7 @@ au Filetype go nmap <Leader>er <Plug>(go-rename)
 au Filetype go nmap <Leader>ds <Plug>(go-def-split)
 au Filetype go nmap <Leader>dv <Plug>(go-def-vertical)
 au Filetype go nmap <Leader>dt <Plug>(go-def-tab)
+au Filetype go nmap <Leader>d <Plug>(go-doc-split)
 let g:go_fmt_command = "goimports"
 let g:go_fmt_fail_silently = 1
 let g:go_highlight_functions = 1
@@ -201,10 +202,15 @@ let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
+" New ones
+let g:go_auto_type_info = 1
+let g:go_metalinter_autosave = 0
 
 Plug 'jodosha/vim-godebug'
 au Filetype go nmap <Leader>br :call GoToggleBreakpoint()<CR>
 au Filetype go nmap <Leader>db :call GoDebug()<CR>
+
+Plug 'buoto/gotests-vim'
 
 Plug 'roxma/SimpleAutoComplPop'
 
@@ -301,6 +307,7 @@ Plug 'othree/html5.vim'
 Plug 'isobit/vim-caddyfile'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'hrj/vim-DrawIt'
+Plug 'godlygeek/tabular'
 
 " Themes
 Plug 'fatih/molokai'
