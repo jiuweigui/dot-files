@@ -5,7 +5,6 @@ echo "[+] Initializing the Rust plugins"
 # Helper tools
 HELPER_TOOLS=(
     'cargo-update'
-    'rustfmt'
     'clippy'
     'cargo-mod'
     'cargo-count'
@@ -33,7 +32,17 @@ SPECIFIC_TOOLS=(
     'cross'
 )
 
+# Components
+COMPONENTS=(
+    'rustfmt-preview'
+)
+
 for tool in ${HELPER_TOOLS[@]} ${TESTING_TOOLS[@]} ${SPECIFIC_TOOLS[@]}; do
     echo "[+] Installing/Updating $tool"
     cargo install $tool
+done
+
+for component in ${COMPONENTS[@]}; do
+    echo "[+] Installing/Updating $component"
+    rustup component add $component
 done
