@@ -250,7 +250,16 @@ Plug 'easymotion/vim-easymotion'
 Plug 'jlfwong/vim-mercenary'
 
 " git support
-Plug 'airblade/vim-gitgutter'
+"Plug 'airblade/vim-gitgutter'
+Plug 'mhinz/vim-signify'
+let g:signify_vcs_list = ['git', 'hg']
+let g:signify_realtime = 1
+let g:signify_line_highlight = 1
+let g:signify_cursorhold_normal = 1
+let g:signify_cursorhold_insert = 1
+let g:signify_update_on_bufenter = 0
+let g:signify_update_on_focusgained = 1
+
 Plug 'tpope/vim-fugitive'
 
 " Filetypes
